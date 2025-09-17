@@ -19,3 +19,4 @@ app.use(express.static(path.join(__dirname, "public"))); // serve static files f
 app.listen(PORT, () => { // start the server and listen on the defined port
   console.log(`Server running at http://localhost:${PORT}`); // log a message when the server is running
 });
+
