@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); // 
 const path = require("path"); // create a path appplication
 const app = express(); // create an Express application
 const PORT = 3000; // define a port number
