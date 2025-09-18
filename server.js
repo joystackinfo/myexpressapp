@@ -1,5 +1,5 @@
-const express = require("express"); // 
-const path = require("path"); // create a path appplication
+const express = require("express"); // import the Express module
+const path = require("path"); // 
 const app = express(); // create an Express application
 const PORT = 3000; // define a port number
 
