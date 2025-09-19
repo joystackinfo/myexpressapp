@@ -23,7 +23,7 @@ let posts = [
   { id: 3, title: 'post three'}, // add more posts as needed
 ];
 app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
-  res.json(posts); // send posts array as JSON response
+  res.send(posts); // send posts array as JSON response
 });
 
 app.listen(PORT, () => { // start the server and listen on the defined port
