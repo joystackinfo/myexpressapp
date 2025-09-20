@@ -29,17 +29,23 @@ app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
   const limit =parseInt(req.query.limit); // get the limit of the query parameter 
     
   if(!isNaN(limit) && limit > 0 ){ // check if the limit is a positive number
-    return res.json(posts.slice(0, limit)); // send the first 'limit' number of posts as JSON response
+    return res.status(200).json(posts.slice(0, limit)); // send the first 'limit' number of posts as JSON response
   } else {
-    return res.json(posts);
+    return res.status(200).json(posts);
   }
 });
 
 //GET A SINGLE POST
 app.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
   const id = parseInt(req.params.id); // get the id parameter from the URL and convert it to an integer
-  res.send(posts.filter(post => post.id === id)); // send posts array as JSON response
+  const post = posts.find(post => post.id === id); // find the post with the matching id
+  if (post) {
+    return res.status(200).json(post);
+  } else {
+    return res.status(404).json({ message: "Post not found" });
+  }
 });
+
 app.listen(POST, () => { // start the server and listen on the defined port
   console.log(`Server running at http://localhost:${POST}`); // log a message when the server is running
 });
