@@ -29,7 +29,7 @@ app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
   const limit =parseInt(req.query.limit); // get the limit of the query parameter 
     
   if(!isNaN(limit) && limit > 0 ){ // check if the limit is a positive number
-    return res.json(posts.slice(0, limit));
+    return res.json(posts.slice(0, limit)); // send the first 'limit' number of posts as JSON response
   } else {
     return res.json(posts);
   }
