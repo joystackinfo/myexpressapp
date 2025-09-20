@@ -2,6 +2,7 @@ const express = require("express"); // import the Express module
 const path = require("path"); // send a different
 const app = express(); // create an Express application
 const PORT = 3000; // define a port number
+const POST = process.env.POST || 3000; // get port from environment variable or use default 3000
 
 //SETUP STATIC FOLDER
 
@@ -22,11 +23,18 @@ let posts = [
    { id: 2, title: 'post two'}, // each post has an id and title
   { id: 3, title: 'post three'}, // add more posts as needed
 ];
+
+//GET ALL POSTS
 app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
   res.send(posts); // send posts array as JSON response
 });
 
-app.listen(PORT, () => { // start the server and listen on the defined port
-  console.log(`Server running at http://localhost:${PORT}`); // log a message when the server is running
+//GET A SINGLE POST
+app.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
+  console.log(req.params.id); // log the id parameter from the request
+  res.send(posts); // send posts array as JSON response
+});
+app.listen(POST, () => { // start the server and listen on the defined port
+  console.log(`Server running at http://localhost:${POST}`); // log a message when the server is running
 });
 
