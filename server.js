@@ -8,7 +8,7 @@ const POST = process.env.POST || 3000; // get port from environment variable or 
 
 // app.use(express.static(path.join(__dirname, "public"))); // serve static files from the "public" directory
 
-// // basic route
+// // basic routes
 // app.get("/" , (req, res) => { // handle GET request to root URL (/ is the homepage)
 //   res.sendFile(path.join(__dirname, "public", "index.html")); // send index.html file as response
 // });
@@ -31,8 +31,8 @@ app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
 
 //GET A SINGLE POST
 app.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
-  console.log(req.params.id); // log the id parameter from the request
-  res.send(posts); // send posts array as JSON response
+  const id = parseInt(req.params.id); // get the id parameter from the URL and convert it to an integer
+  res.send(posts.filter(post => post.id === id)); // send posts array as JSON response
 });
 app.listen(POST, () => { // start the server and listen on the defined port
   console.log(`Server running at http://localhost:${POST}`); // log a message when the server is running
