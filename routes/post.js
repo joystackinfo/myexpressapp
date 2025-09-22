@@ -1,8 +1,5 @@
 const express = require('express');
-const router= express.router();
-
-
-
+const router= express.Router(); // create a new router object
 
 let posts = [
   { id: 1, title: 'post one'}, // array of post objects
@@ -11,7 +8,7 @@ let posts = [
 ];
 
 //GET ALL POSTS
-app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
+router.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
   const limit =parseInt(req.query.limit); // get the limit of the query parameter 
     
   if(!isNaN(limit) && limit > 0 ){ // check if the limit is a positive number
@@ -22,7 +19,7 @@ app.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
 });
 
 //GET A SINGLE POST
-app.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
+router.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
   const id = parseInt(req.params.id); // get the id parameter from the URL and convert it to an integer
   const post = posts.find(post => post.id === id); // find the post with the matching id
   if (post) {
@@ -31,3 +28,6 @@ app.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:i
     return res.status(404).json({ message: "Post not found" });
   }
 });
+
+
+export default router; // export the router object to be used in other files
