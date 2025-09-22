@@ -4,6 +4,7 @@ const app = express(); // create an Express application
 const PORT = 3000; // define a port number
 const POST = process.env.POST || 3000; // get port from environment variable or use default 3000
 const posts = require('./routes/posts'); // import posts route
+const posts = require('./routes/posts'); // import posts route
 
 //SETUP STATIC FOLDER
 

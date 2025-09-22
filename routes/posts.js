@@ -1,6 +1,7 @@
 const express = require('express');
 const router= express.Router(); // create a new router object
 
+
 let posts = [
   { id: 1, title: 'post one'}, // array of post objects
    { id: 2, title: 'post two'}, // each post has an id and title
