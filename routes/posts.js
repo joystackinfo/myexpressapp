@@ -30,5 +30,12 @@ router.get ("/:id", (req,res) => { // handle GET request to /api/posts/:id URL
   }
 });
 
+//CREATE A NEW POST
+router.post ("/", (req,res) => {
+  console.log(req.body); // log the request body to the console
+
+  res.status(201).json({ message: "Post created" }); // send a JSON response with status 201 (Created)
+});
+
 
 module.exports = router; // export the router object to be used in other files
