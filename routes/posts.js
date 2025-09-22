@@ -30,4 +30,4 @@ router.get ("/:id", (req,res) => { // handle GET request to /api/posts/:id URL
 });
 
 
-export default router; // export the router object to be used in other files
+module.exports = router; // export the router object to be used in other files
