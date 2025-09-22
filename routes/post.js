@@ -8,18 +8,18 @@ let posts = [
 ];
 
 //GET ALL POSTS
-router.get ("/api/posts", (req,res) => { // handle GET request to /api/posts URL
+router.get ("/", (req,res) => { // handle GET request to /api/posts URL
   const limit =parseInt(req.query.limit); // get the limit of the query parameter 
     
   if(!isNaN(limit) && limit > 0 ){ // check if the limit is a positive number
     return res.status(200).json(posts.slice(0, limit)); // send the first 'limit' number of posts as JSON response
   } else {
-    return res.status(200).json(posts);
+    return res.status(200).json(posts); // send all posts as JSON response
   }
 });
 
 //GET A SINGLE POST
-router.get ("/api/posts/:id", (req,res) => { // handle GET request to /api/posts/:id URL
+router.get ("/:id", (req,res) => { // handle GET request to /api/posts/:id URL
   const id = parseInt(req.params.id); // get the id parameter from the URL and convert it to an integer
   const post = posts.find(post => post.id === id); // find the post with the matching id
   if (post) {
