@@ -1,28 +1,29 @@
 const express = require('express');
-const router= express.Router(); // create a new router object
+const router = express.Router();
 
-
+// Sample posts array
 let posts = [
-  { id: 1, title: 'post one'}, // array of post objects
-   { id: 2, title: 'post two'}, // each post has an id and title
-  { id: 3, title: 'post three'}, // add more posts as needed
+  { id: 1, title: 'post one' },
+  { id: 2, title: 'post two' },
+  { id: 3, title: 'post three' },
 ];
 
-//GET ALL POSTS
-router.get ("/", (req,res) => { // handle GET request to /api/posts URL
-  const limit =parseInt(req.query.limit); // get the limit of the query parameter 
-    
-  if(!isNaN(limit) && limit > 0 ){ // check if the limit is a positive number
-    return res.status(200).json(posts.slice(0, limit)); // send the first 'limit' number of posts as JSON response
+// GET ALL POSTS
+router.get("/", (req, res) => {
+  const limit = parseInt(req.query.limit);
+  
+  if (!isNaN(limit) && limit > 0) {
+    return res.status(200).json(posts.slice(0, limit));
   } else {
-    return res.status(200).json(posts); // send all posts as JSON response
+    return res.status(200).json(posts);
   }
 });
 
-//GET A SINGLE POST
-router.get ("/:id", (req,res) => { // handle GET request to /api/posts/:id URL
-  const id = parseInt(req.params.id); // get the id parameter from the URL and convert it to an integer
-  const post = posts.find(post => post.id === id); // find the post with the matching id
+// GET A SINGLE POST
+router.get("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = posts.find(p => p.id === id);
+
   if (post) {
     return res.status(200).json(post);
   } else {
@@ -30,12 +31,10 @@ router.get ("/:id", (req,res) => { // handle GET request to /api/posts/:id URL
   }
 });
 
-//CREATE A NEW POST
-router.post ("/", (req,res) => {
-  console.log(req.body); // log the request body to the console
-
-  res.status(201).json({ message: "Post created" }); // send a JSON response with status 201 (Created)
+// POST A NEW POST (logs body only)
+router.post("/", (req, res) => {
+  console.log("Received body:", req.body); // logs whatever is sent
+  res.status(201).json({ message: "Post received", data: req.body });
 });
 
-
-module.exports = router; // export the router object to be used in other files
+module.exports = router;
