@@ -34,7 +34,16 @@ router.get("/:id", (req, res) => {
 // POST A NEW POST (logs body only)
 router.post("/", (req, res) => {
   console.log("Received body:", req.body); // logs whatever is sent
-  res.status(201).json({ message: "Post received", data: req.body });
+
+  const newPost = {
+    id: posts.length + 1,
+    title: req.body.title
+  };
+  if (!newPost.title) {
+    return res.status(400).json({msg: "please involve a title"});
+  }
+  posts.push(newPost);
+  res.status(201).json(posts);
 });
 
 module.exports = router;
