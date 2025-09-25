@@ -24,10 +24,14 @@ router.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const post = posts.find(p => p.id === id);
 
-  if (post) {
-    return res.status(200).json(post);
-  } else {
-    return res.status(404).json({ message: "Post not found" });
+ if (post) {
+  return res
+    .status(200)
+    .json(post);
+} else {
+  return res
+    .status(404)
+    .json({ msg: `No post with the id of ${id}` });
   }
 });
 
